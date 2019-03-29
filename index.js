@@ -33,7 +33,19 @@ server.get('/api/projects/:id', async (req, res) => {
   const id = req.params.id;
   try {
     const project = await db('projects').where({ id }).first();
+    if (project.finished === 0) {
+      project.finished = false;
+    } else {
+      project.finished = true;
+    }
     const actions = await db('actions').where({ project_id: id })
+    actions.map(action => {
+      if (action.action_finished === 0) {
+        return action.action_finished = false;
+      } else {
+        return action.action_finished = true;
+      }
+    })
     project.actions = actions;
     res.status(200).json(project);
   } catch (error) {
