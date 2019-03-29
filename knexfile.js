@@ -9,9 +9,9 @@ module.exports = {
     migrations: {
       directory: './data/migrations'
     },
-    // seeds: {
-    //   directory: './data/seeds'
-    // },
+    seeds: {
+      directory: './data/seeds'
+    },
     // by default SQLite will not enforce foreign keys!
     pool: {
       afterCreate: (connection, done) => {

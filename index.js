@@ -29,7 +29,7 @@ server.get('/api/actions', async (req, res) => {
   }
 })
 
-server.get('/api/project/:id', async (req, res) => {
+server.get('/api/projects/:id', async (req, res) => {
   const id = req.params.id;
   try {
     const project = await db('projects').where({ id }).first();
@@ -41,7 +41,7 @@ server.get('/api/project/:id', async (req, res) => {
   }
 })
 
-server.post('/api/project', async (req, res) => {
+server.post('/api/projects', async (req, res) => {
   try {
     const [id] = await db('projects').insert(req.body);
     const project = await db('projects').where({ id }).first();
@@ -51,7 +51,7 @@ server.post('/api/project', async (req, res) => {
   }
 })
 
-server.post('/api/action', async (req, res) => {
+server.post('/api/actions', async (req, res) => {
   try {
     const [id] = await db('actions').insert(req.body);
     const action = await db('actions').where({ id }).first();
